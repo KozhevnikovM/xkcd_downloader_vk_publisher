@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Comics publisher
 
 The script download random comics from https://xkcd.com and publish it in your vk public
