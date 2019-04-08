@@ -7,7 +7,7 @@ python 3.6+
 ## How to install
 1. Install requirements:
 ```bash
-$ python -r requiremens.txt
+$ python -r requirements.txt
 ```
 2. Get your VK acceess key:
 https://vk.com/dev/implicit_flow_user
