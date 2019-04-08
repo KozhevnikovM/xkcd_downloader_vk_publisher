@@ -100,5 +100,4 @@ if __name__ == '__main__':
 
     publish_photo(owner_id, message, attachments, vk_required_params)
     print(f'photo {comics_filename} published')
-    print(comics_filename, type(comics_filename))
     os.remove(os.path.join(comics_filename))
