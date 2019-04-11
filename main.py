@@ -41,7 +41,7 @@ def get_comment(comics_data):
 def get_random_comics():
     max_comics_num = requests.get('https://xkcd.com/info.0.json').json()['num']
     random_num = randrange(1, max_comics_num + 1)
-    url = 'https://xkcd.com/' + str(random_num)
+    url = f'https://xkcd.com/{random_num}'
     comics_data = get_comics_data(url)
     return download_comics(comics_data), get_comment(comics_data)
 
