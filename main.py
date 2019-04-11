@@ -91,10 +91,10 @@ if __name__ == '__main__':
 
     upload_url = get_upload_url(vk_required_params)
     server_data = upload_to_server(comics_filename, upload_url)
-    hash = server_data['hash']
+    data_hash = server_data['hash']
     photo = server_data['photo']
     server = server_data['server']
-    photo_details = save_to_album(photo, hash, server, vk_required_params)['response'][0]
+    photo_details = save_to_album(photo, data_hash, server, vk_required_params)['response'][0]
     owner_id = '-' + GROUP_ID
     message = comics_message
     attachments = 'photo' + str(photo_details['owner_id']) + '_' + str(photo_details['id'])
