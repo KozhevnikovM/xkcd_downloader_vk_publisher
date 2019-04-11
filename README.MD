@@ -21,4 +21,4 @@ $python main.py
 ## Project Goals
 
 The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
->>>>>>> 1f2347bc4d0ecea741a544fccb5f75047a3a81db
+
