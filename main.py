@@ -26,16 +26,24 @@ def get_comics_data(url):
     return response.json()
 
 
-def download_comics(url):
-    img_url = get_comics_data(url)['img']
+def download_comics(comics_data):
+    img_url = comics_data['img']
     filename = urlparse(img_url).path.split('/')[-1]
     download_image(img_url, filename)
     return filename
 
 
-def get_comment(url):
-    comment = get_comics_data(url)['alt']
+def get_comment(comics_data):
+    comment = comics_data['alt']
     return comment
+
+
+def get_random_comics():
+    max_comics_num = requests.get('https://xkcd.com/info.0.json').json()['num']
+    random_num = randrange(1, max_comics_num + 1)
+    url = 'https://xkcd.com/' + str(random_num)
+    comics_data = get_comics_data(url)
+    return download_comics(comics_data), get_comment(comics_data)
 
 
 def get_upload_url(vk_required_params):
@@ -66,13 +74,6 @@ def publish_photo(owner_id, message, attachments, params):
     data['attachments'] = attachments
     response = requests.post(f'{VK_API_TEMPLATE}/wall.post', data=data)
     return response.json()
-
-
-def get_random_comics():
-    max_comics_num = requests.get('https://xkcd.com/info.0.json').json()['num']
-    random_num = randrange(1, max_comics_num + 1)
-    url = 'https://xkcd.com/' + str(random_num)
-    return download_comics(url), get_comment(url)
 
 
 if __name__ == '__main__':
