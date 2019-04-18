@@ -26,16 +26,10 @@ def get_comics_data(url):
     return response.json()
 
 
-def download_comics(comics_data):
-    img_url = comics_data['img']
+def download_comics(img_url):
     filename = urlparse(img_url).path.split('/')[-1]
     download_image(img_url, filename)
     return filename
-
-
-def get_comment(comics_data):
-    comment = comics_data['alt']
-    return comment
 
 
 def get_random_comics():
@@ -43,7 +37,7 @@ def get_random_comics():
     random_num = randrange(1, max_comics_num + 1)
     url = f'https://xkcd.com/{random_num}'
     comics_data = get_comics_data(url)
-    return download_comics(comics_data), get_comment(comics_data)
+    return download_comics(comics_data['img']), comics_data['alt']
 
 
 def get_upload_url(vk_required_params):
@@ -95,9 +89,9 @@ if __name__ == '__main__':
     photo = server_data['photo']
     server = server_data['server']
     photo_details = save_to_album(photo, data_hash, server, vk_required_params)['response'][0]
-    owner_id = '-' + GROUP_ID
+    owner_id = f'-GROUP_ID'
     message = comics_message
-    attachments = 'photo' + str(photo_details['owner_id']) + '_' + str(photo_details['id'])
+    attachments = f'photo{photo_details["owner_id"]}_{photo_details["id"]}'
 
     publish_photo(owner_id, message, attachments, vk_required_params)
     print(f'photo {comics_filename} published')
